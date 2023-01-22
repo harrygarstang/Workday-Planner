@@ -14,11 +14,19 @@ var plannerContainer = $('#planner');
     // Create a column to display the time
     var timeColumn = $("<div>");
     timeColumn.attr('class', 'col-lg-1 col-md-1 hour');
+    timeColumn.text(1);
 
     // Create an area for the text
     var txtArea = $('<textarea>');
+    txtArea.attr('class', 'col-lg-1 col-md-1 saveBtn fa fa-save');
+    txtArea.attr('cols','100');
 
     // Create the button for saving 
+    var saveButton = $('<button>');
+    saveButton.attr('class', 'col-lg-1 col-md-1 saveBtn fa fa-save');
+    
+
+
 
     // Append the dynamically created timeblocks 
 
