@@ -47,6 +47,16 @@ function generateWorkdayPlanner(startHour, endhour) {
 }
 
 var scheduleButton = document.getElementById("userScheduleBtn");
-button.addEventListener
+scheduleButton.addEventListener("click", function(){
+   var startTime = prompt("Please enter the start time in whole hours only (e.g. 9)");
+   var endTime = prompt("Please enter the  end time (e.g. 17)");
 
-generateWorkdayPlanner(9, 17);
+   // Validate input by converting input to integers
+   startTime = parseInt(startTime);
+   endTime = parseInt(endTime);
+
+   generateWorkdayPlanner(startTime, endTime);
+   this.remove();
+});
+
+
