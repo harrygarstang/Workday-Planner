@@ -46,6 +46,10 @@ function generateWorkdayPlanner(startHour, endhour) {
    }
 }
 
+
+
+
+
 var scheduleButton = document.getElementById("userScheduleBtn");
 scheduleButton.addEventListener("click", function(){
    var startTime = prompt("Please enter the start time in whole hours only (e.g. 9)");
@@ -55,8 +59,57 @@ scheduleButton.addEventListener("click", function(){
    startTime = parseInt(startTime);
    endTime = parseInt(endTime);
 
-   generateWorkdayPlanner(startTime, endTime);
-   this.remove();
+   // store user input in local storage 
+   localStorage.setItem("startTime", startTime);
+   localStorage.setItem("endTime", endTime);
+
+   // convert user input into integers
+   var storedstartTime = parseInt(localStorage.getItem("startTime"));
+   var storedendTime = parseInt(localStorage.getItem("endTime"));
+
+   
+   
+   generateWorkdayPlanner(storedstartTime, storedendTime);
+   // this.remove();var scheduleButton = document.getElementById("userScheduleBtn");
+
+// Check if the start time and end time are already stored in local storage
+var storedStartTime = localStorage.getItem("startTime");
+var storedEndTime = localStorage.getItem("endTime");
+
+if (storedStartTime && storedEndTime) {
+   // Convert stored values to integers
+   storedStartTime = parseInt(storedStartTime);
+   storedEndTime = parseInt(storedEndTime);
+   // Generate the planner using the stored values
+   generateWorkdayPlanner(storedStartTime, storedEndTime);
+}
+
+scheduleButton.addEventListener("click", function(){
+   if (!storedStartTime && !storedEndTime) {
+      var startTime = prompt("Please enter the start time in whole hours only (e.g. 9)");
+      var endTime = prompt("Please enter the  end time (e.g. 17)");
+   } else {
+      var startTime = storedStartTime;
+      var endTime = storedEndTime;
+   }
+
+   // Validate input by converting input to integers
+   startTime = parseInt(startTime);
+   endTime = parseInt(endTime);
+
+   // store user input in local storage 
+   localStorage.setItem("startTime", startTime);
+   localStorage.setItem("endTime", endTime);
+
+   // convert user input into integers
+   storedstartTime = parseInt(localStorage.getItem("startTime"));
+   storedendTime = parseInt(localStorage.getItem("endTime"));
+
+   
+   
+   generateWorkdayPlanner(storedstartTime, storedendTime);
+   // this.remove();
+});
 });
 
 
