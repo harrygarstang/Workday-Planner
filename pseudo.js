@@ -11,12 +11,9 @@ setInterval(CurrentTime, 1000);
 var plannerContainer = $('#plannerContainer');
 
 function generateWorkdayPlanner(startHour, endhour) {
-   for (i = startHour; i < endhour; i++) {
+   for (i = startHour; i < endhour+1; i++) {
 
-      // // Dynamically create row 
-      // var rowBlock = $('<div>');
-      // rowBlock.attr('class','')
-      // Dynamically create time-block
+      
       var timeBlock = $("<div>");
       timeBlock.attr('class', 'row time-block');
 
@@ -29,6 +26,17 @@ function generateWorkdayPlanner(startHour, endhour) {
       var txtArea = $('<textarea>');
       txtArea.attr('class', 'col-lg-10 col-md-10 past');
       txtArea.attr('cols', '100');
+
+      // Check if the user input is already locally stored for this hour 
+      var storedText = localStorage.getItem(i);
+      if (storedText) {
+         txtArea.val(storedText);
+      }
+
+      // Save button functionality 
+      var saveButton = $('<button>');
+   
+
 
       // Create the button for saving 
       var saveButton = $('<button>');
@@ -51,26 +59,6 @@ function generateWorkdayPlanner(startHour, endhour) {
 
 
 var scheduleButton = document.getElementById("userScheduleBtn");
-scheduleButton.addEventListener("click", function(){
-   var startTime = prompt("Please enter the start time in whole hours only (e.g. 9)");
-   var endTime = prompt("Please enter the  end time (e.g. 17)");
-
-   // Validate input by converting input to integers
-   startTime = parseInt(startTime);
-   endTime = parseInt(endTime);
-
-   // store user input in local storage 
-   localStorage.setItem("startTime", startTime);
-   localStorage.setItem("endTime", endTime);
-
-   // convert user input into integers
-   var storedstartTime = parseInt(localStorage.getItem("startTime"));
-   var storedendTime = parseInt(localStorage.getItem("endTime"));
-
-   
-   
-   generateWorkdayPlanner(storedstartTime, storedendTime);
-   // this.remove();var scheduleButton = document.getElementById("userScheduleBtn");
 
 // Check if the start time and end time are already stored in local storage
 var storedStartTime = localStorage.getItem("startTime");
@@ -109,7 +97,17 @@ scheduleButton.addEventListener("click", function(){
    
    generateWorkdayPlanner(storedstartTime, storedendTime);
    // this.remove();
+
+   
 });
-});
+
+
+var resetButton = document.getElementById("resetBtn");
+resetButton.addEventListener("click", function() {
+   localStorage.clear();
+   location.reload();
+}
+
+)
 
 
