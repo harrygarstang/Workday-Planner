@@ -13,9 +13,16 @@ var plannerContainer = $('#plannerContainer');
 function generateWorkdayPlanner(startHour, endhour) {
    for (i = startHour; i < endhour+1; i++) {
 
-      
+      // Gets the curent hour
+      var currentHour = moment().hour();
       var timeBlock = $("<div>");
       timeBlock.attr('class', 'row time-block');
+
+      // Changing box colours depending on if they are past present or future 
+      if (i < currentHour) {
+         timeBlock.addClass("past");
+         
+      }
 
       // Create a column to display the time
       var timeColumn = $("<div>");
@@ -37,10 +44,17 @@ function generateWorkdayPlanner(startHour, endhour) {
       // Create the button for saving 
       var saveButton = $('<button>');
       saveButton.attr('class', 'fa fa-save col-lg-1 col-md-1 saveBtn');
-      saveButton.on("click", function(){
-         var text = $(this).siblings('textarea').val();
-         localStorage.setItem(i,text);
-      });
+      saveButton.on("click", (function(i){ 
+         // Code to fix scope issue 
+         // Returning a function returned onlty when save button is clicked
+         return function(){
+            // Inside the inner function, accessing value of save button using siblings method
+           var text = $(this).siblings('textarea').val();
+           localStorage.setItem(i,text);
+           console.log("Saved: " + i + " - " + text);
+         }
+         // closing inner function 
+       })(i));
 
       // Append the dynamically created timeblocks 
       timeBlock.append(
