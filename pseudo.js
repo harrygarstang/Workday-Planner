@@ -21,8 +21,12 @@ function generateWorkdayPlanner(startHour, endhour) {
       // Changing box colours depending on if they are past present or future 
       if (i < currentHour) {
          timeBlock.addClass("past");
-         
+      } else if (i === currentHour) {
+         timeBlock.addClass("present");
+      }else {
+         timeBlock.addClass("future");
       }
+
 
       // Create a column to display the time
       var timeColumn = $("<div>");
