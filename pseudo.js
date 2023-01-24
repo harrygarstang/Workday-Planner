@@ -33,15 +33,14 @@ function generateWorkdayPlanner(startHour, endhour) {
          txtArea.val(storedText);
       }
 
-      // Save button functionality 
-      var saveButton = $('<button>');
-   
-
 
       // Create the button for saving 
       var saveButton = $('<button>');
       saveButton.attr('class', 'fa fa-save col-lg-1 col-md-1 saveBtn');
-
+      saveButton.on("click", function(){
+         var text = $(this).siblings('textarea').val();
+         localStorage.setItem(i,text);
+      });
 
       // Append the dynamically created timeblocks 
       timeBlock.append(
