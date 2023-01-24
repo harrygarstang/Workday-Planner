@@ -4,7 +4,7 @@ This project is a dynamic work day planner enabling users to input their custom 
 
 ### How to use this program 
 
-* Firstly, access the Workday Planner web page at the following url: 
+* Firstly, access the Workday Planner web page at the following url: https://harrygarstang.github.io/Workday-Planner/
 
 * Secondly, click the 'Click here to input your workday schedule' button 
 
@@ -12,7 +12,7 @@ This project is a dynamic work day planner enabling users to input their custom 
 
 * Please provide these in 24 hour format. For example, if you're workday was 09:00 until 18:00 - this would be a start time of 9, and an end time of 18. 
 
-![Image of my project ]()
+![Image of my project](./images/workdayscheduler.png)
 
 
 ### What I have learnt 
